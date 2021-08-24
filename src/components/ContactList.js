@@ -5,7 +5,7 @@ function fits(name, filter) {
   return name.toLowerCase().includes(filter.toLowerCase());
 }
 
-function ContactList({ state }) {
+function ContactList({ state, onDelete }) {
   return (
     <ul>
       {state.contacts
@@ -14,6 +14,14 @@ function ContactList({ state }) {
           return (
             <li>
               {contact.name} {contact.number}
+              <button
+                type="button"
+                onClick={() => {
+                  onDelete(contact.id);
+                }}
+              >
+                Delete
+              </button>
             </li>
           );
         })}
@@ -21,6 +29,9 @@ function ContactList({ state }) {
   );
 }
 
-ContactList.propTypes = {};
+ContactList.propTypes = {
+  state: PropTypes.object.isRequired,
+  onDelete: PropTypes.func.isRequired,
+};
 
 export default ContactList;

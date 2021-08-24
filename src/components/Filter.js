@@ -16,6 +16,8 @@ function Filter({ onChange }) {
   );
 }
 
-Filter.propTypes = {};
+Filter.propTypes = {
+  onChange: PropTypes.func.isRequired,
+};
 
 export default Filter;

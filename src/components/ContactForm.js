@@ -15,7 +15,7 @@ class ContactForm extends React.Component {
     e.preventDefault();
     //console.log(this.state.name, this.state.number);
     this.props.onSubmit(this.state.name, this.state.number);
-    //this.reset();
+    this.reset();
   };
 
   reset = () => {
@@ -26,7 +26,11 @@ class ContactForm extends React.Component {
     //const { name, number } = this.state;
 
     return (
-      <form style={{ marginBottom: "32px" }} onSubmit={this.onSubmit}>
+      <form
+        className={styles.form}
+        style={{ marginBottom: "32px" }}
+        onSubmit={this.onSubmit}
+      >
         <p>Name</p>
         <input
           type="text"
@@ -63,33 +67,8 @@ class ContactForm extends React.Component {
   }
 }
 
-/*
-function ContactForm({}) {
-  return (
-    <div>
-      <form>
-        <p>Name</p>
-        <input
-          type="text"
-          name="name"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-          required
-        />
-        <p>Number</p>
-        <input
-          type="tel"
-          name="number"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
-          required
-        />
-      </form>
-    </div>
-  );
-}
-*/
-
-ContactForm.propTypes = {};
+ContactForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
 
 export default ContactForm;

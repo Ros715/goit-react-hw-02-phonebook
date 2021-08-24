@@ -3,6 +3,7 @@ import ContactForm from "./components/ContactForm.js";
 import Filter from "./components/Filter.js";
 import ContactList from "./components/ContactList.js";
 import "./App.css";
+import { v4 as uuidv4 } from "uuid";
 
 const state0 = {
   contacts: [
@@ -19,13 +20,40 @@ class App extends React.Component {
     super(props);
     this.state = state0;
   }
+
   onAddContact = (name, number) => {
-    console.log("add", name, number);
+    const selectedContact = this.state.contacts.filter((contact) => {
+      return contact.name === name;
+    });
+    if (selectedContact.length > 0) {
+      alert(name + " is already in contacts");
+    } else {
+      const id = uuidv4();
+      this.state.contacts.push({
+        id: id,
+        name: name,
+        number: number,
+      });
+      console.log("add", name, number, id);
+      this.setState({
+        contacts: this.state.contacts,
+      });
+    }
   };
 
   onChangeFilter = (filter) => {
     console.log("filter", filter);
-    this.setState({ filter: filter }); //.filter = filter;
+    this.setState({ filter: filter });
+  };
+
+  onDeleteContact = (contactId) => {
+    console.log(contactId);
+    const reducedList = this.state.contacts.filter((contact) => {
+      return contact.id !== contactId;
+    });
+    this.setState({
+      contacts: reducedList,
+    });
   };
 
   render() {
@@ -36,34 +64,10 @@ class App extends React.Component {
 
         <h2>Contacts</h2>
         <Filter onChange={this.onChangeFilter} />
-        <ContactList state={this.state} />
+        <ContactList state={this.state} onDelete={this.onDeleteContact} />
       </div>
     );
   }
 }
-
-/*
-function onAddContact(name, number) {
-  console.log("add", name, number);
-}
-
-function onChangeFilter(filter) {
-  console.log("filter", filter);
-  state.setState({ filter: filter }); //.filter = filter;
-}
-
-function App() {
-  return (
-    <div>
-      <h1>Phonebook</h1>
-      <ContactForm onSubmit={onAddContact} />
-
-      <h2>Contacts</h2>
-      <Filter onChange={onChangeFilter} />
-      <ContactList state={state} />
-    </div>
-  );
-}
-*/
 
 export default App;
