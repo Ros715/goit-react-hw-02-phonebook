@@ -1,16 +1,18 @@
 import React from "react";
-import ContactForm from "./components/ContactForm.js";
-import Filter from "./components/Filter.js";
-import ContactList from "./components/ContactList.js";
+import ContactForm from "./components/ContactForm/ContactForm.js";
+import Filter from "./components/Filter/Filter.js";
+import ContactList from "./components/ContactList/ContactList.js";
 import "./App.css";
 import { v4 as uuidv4 } from "uuid";
 
 const state0 = {
   contacts: [
+    /*
     { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
     { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
     { id: "id-3", name: "Eden Clements", number: "645-17-79" },
     { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
+  */
   ],
   filter: "",
 };
@@ -34,7 +36,7 @@ class App extends React.Component {
         name: name,
         number: number,
       });
-      console.log("add", name, number, id);
+      //console.log("add", name, number, id);
       this.setState({
         contacts: this.state.contacts,
       });
@@ -42,12 +44,12 @@ class App extends React.Component {
   };
 
   onChangeFilter = (filter) => {
-    console.log("filter", filter);
+    //console.log("filter", filter);
     this.setState({ filter: filter });
   };
 
   onDeleteContact = (contactId) => {
-    console.log(contactId);
+    //console.log(contactId);
     const reducedList = this.state.contacts.filter((contact) => {
       return contact.id !== contactId;
     });

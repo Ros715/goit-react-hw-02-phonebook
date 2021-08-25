@@ -6,8 +6,8 @@ class ContactForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "Aaaa Bbbbbbb",
-      number: "123456789",
+      name: "",
+      number: "",
     };
   }
 
@@ -40,7 +40,7 @@ class ContactForm extends React.Component {
           title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
           required
           onChange={(e) => {
-            console.log("name", e.currentTarget.value);
+            //console.log("name", e.currentTarget.value);
             this.setState({ name: e.currentTarget.value });
           }}
         />
@@ -54,7 +54,7 @@ class ContactForm extends React.Component {
           title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
           required
           onChange={(e) => {
-            console.log("number", e.currentTarget.value);
+            //console.log("number", e.currentTarget.value);
             this.setState({ number: e.currentTarget.value });
           }}
         />

@@ -1,4 +1,4 @@
-import styles from "./ContactList.module.css";
+//import styles from "./ContactList.module.css";
 import PropTypes from "prop-types";
 
 function fits(name, filter) {
@@ -12,7 +12,7 @@ function ContactList({ state, onDelete }) {
         .filter((contact) => fits(contact.name, state.filter))
         .map((contact) => {
           return (
-            <li>
+            <li key={contact.id}>
               {contact.name} {contact.number}
               <button
                 type="button"

@@ -1,4 +1,4 @@
-import styles from "./Filter.module.css";
+//import styles from "./Filter.module.css";
 import PropTypes from "prop-types";
 
 function Filter({ onChange }) {
